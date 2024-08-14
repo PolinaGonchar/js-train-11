@@ -1,227 +1,255 @@
-// Завдання: 1
+// Task: 1
 /**
- * Функція `customSet` створює множину з масиву чисел та рядків, але видаляє всі елементи, які є числами.
- * arr - Масив, з якого створюється множина.
- * Повертаємо - Нову множину, яка містить лише рядкові елементи.
+ * The `customSet` function creates a set from an array of numbers and strings, 
+ * but removes all elements that are numbers.
+ * arr - The array from which the set is created.
+ * Returns - A new set containing only string elements.
  */
 function customSet(arr) {
-  // Створення множини з масиву за допомогою конструктора Set
-  // Перебираємо множину за допомогою 'for of'. Цикл 'for of' дозволяє пройтись по всіх елементах колекції.
-  // Для кожного елемента перевіряємо, чи є цей елемент числом за допомогою оператора typeof
-  // Якщо елемент є числом, то видаляємо його з множини за допомогою метода delete
-  // Повертаємо нову множину, яка вже не містить числових значень
+  let set = new Set(arr);
+  for (let index of set) {
+    if (typeof index === 'number') {
+      set.delete(index);
+    }
+  }
+  return set;
 }
-// Приклад використання функції customSet
-console.log("Завдання: 1 ==============================");
+// Example usage of the customSet function
+console.log("Task: 1 ==============================");
 console.log(customSet([1, "a", 2, "b", 3, "c"]));
-// Виведе: Set(3) { 'a', 'b', 'c' }
+// Output: Set(3) { 'a', 'b', 'c' }
 
-// Завдання: 2
+// Task: 2
 /**
- * Функція `clearSet` очищає множину.
- * set - Множина, яку потрібно очистити.
+ * The `clearSet` function clears a set.
+ * set - The set to be cleared.
  */
 function clearSet(set) {
-  // Використання властивості size для перевірки розміру множини, чи більше вона нуля
-  // Якщо так використання методу clear для очищення множини та повертаємо Множину очищено.
-  // Якщо ні повертаємо Множина вже порожня.
+  if (set.size > 0) {
+    set.clear();
+    return `Set cleared`;
+  } else {
+    return `Set is already empty`;
+  }
 }
 
-// Приклад використання функції clearSet
-console.log("Завдання: 2 ==============================");
+// Example usage of the clearSet function
+console.log("Task: 2 ==============================");
 
 console.log(clearSet(new Set([1, 2, 3])));
-// Виведе:
-// Множину очищено.
+// Output:
+// Set cleared.
 
-// Завдання: 3
+// Task: 3
 /**
- * Функція `addElements` додає елементи до множини з масиву, якщо вони ще не присутні у множині.
- * mySet - Множина, до якої будуть додані елементи.
- * arr - Масив з елементами, які потрібно додати до множини.
- * Повертаємо - Оновлену множину з новими елементами.
+ * The `addElements` function adds elements from an array to a set if they are not already present in the set.
+ * mySet - The set to which elements will be added.
+ * arr - The array containing elements to be added to the set.
+ * Returns - The updated set with the new elements.
  */
 function addElements(mySet, arr) {
-  // Перебираємо масив та додаємо кожний елемент до множини за допомогою методу add
-  // Метод add додає елемент до множини лише якщо він ще не присутній у множині
-  // Повертаємо оновлену множину
+  for (let item of arr) {
+    mySet.add(item);
+  }
+  return mySet;
 }
 
-// Приклад використання функції addElements
-console.log("Завдання: 3 ==============================");
+// Example usage of the addElements function
+console.log("Task: 3 ==============================");
 console.log(addElements(new Set(["a", "b", "c"]), ["d", "e", "f"]));
-// Виведе: Set(6) { 'a', 'b', 'c', 'd', 'e', 'f' }
+// Output: Set(6) { 'a', 'b', 'c', 'd', 'e', 'f' }
 
-// Завдання: 4
+// Task: 4
 /**
- * Функція `filterAndAdd` видаляє з множини всі числові елементи та додає до множини унікальні значення з масиву,
- * якщо вони ще не присутні в множині. В результаті отримуємо множину, що містить лише рядкові значення.
+ * The `filterAndAdd` function removes all numerical elements from a set and 
+ * adds unique values from an array to the set if they are not already present.
+ * As a result, we get a set containing only string values.
  *
- * mySet - Множина, з якої будуть видалені числові елементи.
- * arr - Масив, з якого будуть додані унікальні елементи в множину.
+ * mySet - The set from which numerical elements will be removed.
+ * arr - The array from which unique elements will be added to the set.
  *
- * Повертаємо - Оновлену множину.
+ * Returns - The updated set.
  */
 function filterAndAdd(mySet, arr) {
-  // Перебираємо множину за допомогою 'for of'. Всередині циклу перевіряємо, чи є поточний елемент числом.
-  // Якщо елемент є числом, видаляємо його з множини за допомогою методу delete.
-  // Тепер множина не містить числових значень. Перебираємо масив та додаємо кожний елемент до множини
-  // за допомогою методу add. Метод add додає елемент до множини лише якщо він ще не присутній у множині.
-  // Повертаємо оновлену множину
+  for (let item of mySet) {
+    if (typeof(item) === 'number') {
+      mySet.delete(item);
+    }
+  }
+  for (let value of arr) {
+    mySet.add(value);
+  }
+  return mySet;
 }
 
-// Приклад використання функції filterAndAdd
-console.log("Завдання: 4 ==============================");
+// Example usage of the filterAndAdd function
+console.log("Task: 4 ==============================");
 console.log(filterAndAdd(new Set([1, 2, 3, "a", "b", "c"]), ["d", "e", "f"]));
-// Виведе: Set(6) { 'a', 'b', 'c', 'd', 'e', 'f' }
+// Output: Set(6) { 'a', 'b', 'c', 'd', 'e', 'f' }
 
-// Завдання: 5
+// Task: 5
 
 /**
- * Функція `checkValueAndType` перевіряє, чи містить множина певне значення та виводить його тип.
+ * The `checkValueAndType` function checks if a set contains a specific value and outputs its type.
  *
- * mySet - Множина, в якій буде проводитися пошук.
- * value - Значення, яке потрібно знайти.
+ * mySet - The set in which the search will be conducted.
+ * value - The value to be found.
  *
- * Повертаємо - рядок із повідомленням про наявність значення та його тип.
+ * Returns - A string with a message about the presence of the value and its type.
  */
 function checkValueAndType(mySet, value) {
-  // Використовуємо метод has для перевірки, чи містить множина певне значення.
-  // Якщо значення знайдено, повертаємо рядок Множина має значення "${value}" типу "${typeof value}".
-  // Якщо значення не знайдено, повертаємо рядок Множина не має значення "${value}".
+  if (mySet.has(value)) {
+    return `Set contains the value "${value}" of type "${typeof value}"`;
+  } else {
+    return `Set does not contain the value "${value}"`;
+  }
 }
-// Приклад використання функції checkValueAndType
-console.log("Завдання: 5 ==============================");
+// Example usage of the checkValueAndType function
+console.log("Task: 5 ==============================");
 console.log(checkValueAndType(new Set([1, 2, 3, "a", "b", "c"]), "b"));
-// Виведе: Множина має значення "b" типу "string"
+// Output: Set contains the value "b" of type "string"
 
-// Завдання: 6
+// Task: 6
 
 /**
- * Функція `setToArray` конвертує множину в масив, видаляє з масиву всі числові елементи
- * та відсортовує рядкові елементи в алфавітному порядку.
- *
- * mySet - Множина, яку треба конвертувати в масив та обробити.
- *
- * Повертаємо - Відсортований масив із рядковими елементами.
+ * The `setToArray` function converts a set to an array, removes all numerical elements 
+ * from the array, and sorts the string elements alphabetically.
+ * mySet - The set that needs to be converted to an array and processed.
+ * Returns - The sorted array of string elements.
  */
 function setToArray(mySet) {
-  // Конвертуємо множину в масив за допомогою деструктурізації.
-  // Використовуємо метод filter для створення нового масиву, що містить лише рядкові елементи.
-  // Використовуємо метод sort для сортування рядкових елементів в алфавітному порядку.
-  // Повертаємо оброблений масив.
+  let arr = [...mySet];
+  arr = arr.filter((item) => typeof(item) === 'string');
+  arr.sort();
+  return arr;
 }
 
-// Приклад використання функції setToArray
-console.log("Завдання: 6 ==============================");
+// Example usage of the setToArray function
+console.log("Task: 6 ==============================");
 console.log(setToArray(new Set([1, 2, 3, "b", "a", "c"])));
-// Виведе: ['a', 'b', 'c']
+// Output: ['a', 'b', 'c']
 
-// Завдання: 7
+// Task: 7
 
 /**
- * Функція `removeDuplicatesInPlace` видаляє дублікати з масиву без створення нового масиву.
- * arr - Масив, з якого потрібно видалити дублікати.
+ * The `removeDuplicatesInPlace` function removes duplicates from an array without creating a new array.
+ * arr - The array from which duplicates need to be removed.
  */
 function removeDuplicatesInPlace(arr) {
-  // Створення множини для збереження унікальних елементів
-  // Перебір елементів масиву за допомогою циклу for від 0 до довжини масиву
-  // Перевірка, чи елемент вже присутній у множині
-  // Якщо елемент вже є унікальним, видаляємо його з масиву
-  // Зменшуємо лічильник, оскільки масив став коротшим
-  // Додаємо унікальний елемент до множини
-  // Повертаємо множину
+  let uniqueSet = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    if (uniqueSet.has(arr[i])) {
+      arr.splice(i, 1);
+      i--;
+    } else {
+      uniqueSet.add(arr[i]);
+    }
+  }
+  return uniqueSet;
 }
 
-// Приклад використання функції removeDuplicatesInPlace
-console.log("Завдання: 7 ==============================");
+// Example usage of the removeDuplicatesInPlace function
+console.log("Task: 7 ==============================");
 
 console.log(removeDuplicatesInPlace([1, 2, 2, 3, 3, 4, 5, 5]));
-// Виведе: Set(5) { 1, 2, 3, 4, 5 }
+// Output: Set(5) { 1, 2, 3, 4, 5 }
 
-// Завдання: 8
+// Task: 8
 
 /**
- * Функція `areDisjoint` перевіряє, чи є дві множини неспільними (не мають спільних елементів).
- * set1 - Перша множина.
- * set2 - Друга множина.
- * Повертаємо - true, якщо множини не мають спільних елементів, інакше false.
+ * The `areDisjoint` function checks if two sets are disjoint (do not have common elements).
+ * set1 - The first set.
+ * set2 - The second set.
+ * Returns - true if the sets do not have common elements, otherwise false.
  */
 function areDisjoint(set1, set2) {
-  // Перебираємо першу множину за допомогою оператору for of
-  // Якщо знайдено спільний елемент з другою множиною,використовуємо метод has, повертаємо false
-  //Якщо немає  спільних елементів повертаємо true
+  for (let item1 of set1) {
+    if (set2.has(item1)) {
+      return false;
+    }
+  }
+  return true;
 }
 
-// Приклад використання функції areDisjoint
-console.log("Завдання: 8 ==============================");
+// Example usage of the areDisjoint function
+console.log("Task: 8 ==============================");
 console.log(areDisjoint(new Set([1, 2, 3]), new Set([3, 4, 5])));
-// Виведе: false
+// Output: false
 
-// Завдання: 9
+// Task: 9
 
 /**
- * Функція `getDifference` повертає множину, яка містить елементи, що належать першій множині, але не належать другій множині.
- * set1 - Перша множина.
- * set2 - Друга множина.
- * Повертаємо - Множина з елементами, що належать set1, але не належать set2.
+ * The `getDifference` function returns a set containing elements that belong 
+ * to the first set but do not belong to the second set.
+ * set1 - The first set.
+ * set2 - The second set.
+ * Returns - A set with elements that belong to set1 but not to set2.
  */
 function getDifference(set1, set2) {
-  // Створення множини differenceSet
-  // Перебір елементів першої множини за допомогою оператору for of
-  // Якщо елемент не належить другій множині, додаємо його до differenceSet
-  // Повертаємо множину differenceSet з різницею елементів
+  let differenceSet = new Set();
+  for (let item1 of set1) {
+    if (!set2.has(item1)) {
+      differenceSet.add(item1);
+    }
+  }
+  return differenceSet;
 }
 
-// Приклад використання функції getDifference
-console.log("Завдання: 9 ==============================");
+// Example usage of the getDifference function
+console.log("Task: 9 ==============================");
 console.log(getDifference(new Set([1, 2, 3, 4]), new Set([2, 3])));
-// Виведе: Set(2) { 1, 4 }
+// Output: Set(2) { 1, 4 }
 
-// Завдання: 10
+// Task: 10
 
 /**
- * Функція `getIntersection` повертає множину, яка містить спільні елементи двох масивів.
- * arr1 - Перший масив.
- * arr2 - Другий масив.
- * Повертаємо - Множина зі спільними елементами.
+ * The `getIntersection` function returns a set containing the common elements of two arrays.
+ * arr1 - The first array.
+ * arr2 - The second array.
+ * Returns - A set with common elements.
  */
 function getIntersection(arr1, arr2) {
-  // Створення множин з двох масивів
-  // Створення множини intersectionSet
-  // Перебір елементів першої множини за допомогою оператору for of
-  // Перевірка, чи елемент є спільним у другій множині
-  // Додавання спільного елементу до множини intersectionSet
-  // Повертаємо множину intersectionSet
+  let set1 = new Set(arr1);
+  let set2 = new Set(arr2);
+  let intersectionSet = new Set();
+  for (let item1 of set1) {
+    if (set2.has(item1)) {
+      intersectionSet.add(item1);
+    }
+  }
+  return intersectionSet;
 }
 
-// Приклад використання функції getIntersection
-console.log("Завдання: 10 ==============================");
+// Example usage of the getIntersection function
+console.log("Task: 10 ==============================");
 console.log(getIntersection([1, 2, 3, 4], [3, 4, 5, 6]));
-// Виведе: Set(2) { 3, 4 }
+// Output: Set(2) { 3, 4 }
 
-// Завдання: 11
+// Task: 11
 
 /**
- * Функція `iterateSet` виконує ітерацію по множині та виводить ключі, значення та записи кожного елемента.
- * set - Множина, яку потрібно пройтись.
+ * The `iterateSet` function iterates through a set and outputs the keys, values, and entries of each element.
+ * set - The set to iterate through.
  */
 function iterateSet(set) {
-  // Використовуємо методу keys для отримання ітератора ключів
-  // Використовуємо for...of для кожного ключа з ітератора keys
-  // Виведення ключа у консоль
-  // Використовуємо методу values для отримання ітератора значень
-  // Використовуємо for...of для кожного значення з ітератора values
-  // Виведення значення у консоль
-  // Використовуємо методу entries для отримання ітератора записів
-  // Використовуємо for...of для кожного запису з ітератора entries
-  // Виведення запису у консоль
+  let keys = set.keys();
+  for (let key of keys) {
+    console.log(key);
+  }
+  let values = set.values();
+  for (let value of values) {
+    console.log(value);
+  }
+  let entries = set.entries();
+  for (let entry of entries) {
+    console.log(entry);
+  }
 }
 
-// Приклад використання функції iterateSet
-console.log("Завдання: 11 ==============================");
+// Example usage of the iterateSet function
+console.log("Task: 11 ==============================");
 iterateSet(new Set(["a", "b", "c"]));
-// Виведе:
+// Output:
 // a
 // b
 // c
@@ -232,25 +260,27 @@ iterateSet(new Set(["a", "b", "c"]));
 // [ 'b', 'b' ]
 // [ 'c', 'c' ]
 
-// Завдання: 12
+// Task: 12
 
 /**
- * Функція `sumNumbers` рахує суму всіх числових елементів у множині.
- * set - Множина, у якій потрібно порахувати суму чисел.
- * Повертаємо - Суму числових елементів у множині.
+ * The `sumNumbers` function calculates the sum of all numerical elements in a set.
+ * set - The set in which the sum of numbers needs to be calculated.
+ * Returns - The sum of numerical elements in the set.
  */
 function sumNumbers(set) {
-  // Використання методу forEach для перебору елементів множини
-  // Перевірка, чи є елемент числом
-  // Додавання числового елемента до суми
-  // Повертаємо суму
+  let sum = 0;
+  set.forEach(element => {
+    if (typeof element === 'number') {
+      sum += element;
+    }
+  });
   return sum;
 }
 
-// Приклад використання функції sumNumbers
-console.log("Завдання: 12 ==============================");
+// Example usage of the sumNumbers function
+console.log("Task: 12 ==============================");
 console.log(
-  "Сума чисел у множині:",
+  "Sum of numbers in the set:",
   sumNumbers(new Set([1, 2, "a", 3, "b", 4, 5]))
 );
-// Виведе: Сума чисел у множині: 15
+// Output: Sum of numbers in the set: 15
